@@ -84,6 +84,7 @@ while cam.isOpened():
     # カメラからフレームを取得
     ret, frame = cam.read()
     frame = cv2.flip(frame, 1)
+    img = frame.copy()
 
     # 軽量化のためフレームを縮小
     small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
@@ -162,7 +163,6 @@ while cam.isOpened():
                 rec_name = name
             
         # 認識された顔を枠で囲う
-        img = frame.copy()
         cv2.rectangle(img, (x,y), (x+w,y+h), color, 2)
 
     # 顔が検出されれば左上にその顔を表示
