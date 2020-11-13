@@ -38,6 +38,7 @@ $ ./requirements.sh
 ### 動作確認済環境
 
 * Raspberry Pi 4 Model B
+* Raspberry Pi Camera Module V2
 * Raspberry Pi OS Buster
 * python 3.7.3
 * Open CV 4.0
