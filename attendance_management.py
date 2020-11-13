@@ -82,11 +82,11 @@ print("\n [INFO] 勤怠管理を開始しました。終了するには 'ESC' �
 # メイン処理文
 while cam.isOpened():
     # カメラからフレームを取得
-    ret, flame = cam.read()
-    flame = cv2.flip(flame, 1)
+    ret, frame = cam.read()
+    frame = cv2.flip(frame, 1)
 
     # 軽量化のためフレームを縮小
-    small_frame = cv2.resize(flame, (0, 0), fx=0.25, fy=0.25)
+    small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
 
     # BGRからRGBに変換
     rgb_small_frame = small_frame[:, :, ::-1]
@@ -156,13 +156,13 @@ while cam.isOpened():
 
                 # 認識した顔画像をjpgで保存 
                 filename = "{}/{}_{}.jpg".format(output_img_path, datetime.datetime.now().strftime("%Y%m%d%H%M%S"), name)
-                gray = cv2.cvtColor(flame, cv2.COLOR_BGR2GRAY)
+                gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
                 cv2.imwrite(filename, gray[y:y+h,x:x+w])
-                face_img = flame[y:y+h,x:x+w]
+                face_img = frame[y:y+h,x:x+w]
                 rec_name = name
             
         # 認識された顔を枠で囲う
-        img = flame.copy()
+        img = frame.copy()
         cv2.rectangle(img, (x,y), (x+w,y+h), color, 2)
 
     # 顔が検出されれば左上にその顔を表示
